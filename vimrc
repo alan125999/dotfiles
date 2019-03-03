@@ -178,7 +178,7 @@ highlight TabLineSel ctermfg=white ctermbg=33 term=bold cterm=bold
 highlight FoldColumn ctermfg=33 ctermbg=236
 
 " Highlight Warning Message
-highlight WarningMsg term=standout ctermfg=202 guifg=202
+highlight WarningMsg term=standout ctermfg=202
 
 " Remove background color for normal text
 " 去除背景
