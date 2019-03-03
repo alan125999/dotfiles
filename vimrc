@@ -177,6 +177,9 @@ highlight TabLineSel ctermfg=white ctermbg=33 term=bold cterm=bold
 " Highlight fold column
 highlight FoldColumn ctermfg=33 ctermbg=236
 
+" Highlight Warning Message
+highlight WarningMsg term=standout ctermfg=202 guifg=202
+
 " Remove background color for normal text
 " 去除背景
 highlight Normal ctermbg=NONE
@@ -346,7 +349,11 @@ set magic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+function! EchoWarning(msg)
+  echohl WarningMsg
+  echo a:msg
+  echohl None
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-Plug Plugins
@@ -406,11 +413,24 @@ try
     call plug#end()
 
 catch
-
-    echo 'Warning: Vim-Plug is not installed'
-    echo ''
-    echo 'Trying to install...'
-    ! curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo 'Warning: Vim-Plug is not installed!'
+    echo 'Try to install (y/n)?'
+    echo '[No] '
+    silent exec "! sh -c '
+      \ while true; do
+      \     read yn;
+      \     case $yn in
+      \         [Yy]* )
+      \             curl -fLo ~/.vim/autoload/plug.vim 
+      \                  --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;
+      \             exit;;
+      \         * )
+      \             echo \"...skipped\";
+      \             exit;;
+      \     esac
+      \ done
+      \'"
+"    ! curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 endtry
 
