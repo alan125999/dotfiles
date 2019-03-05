@@ -409,6 +409,9 @@ try
         " nerdtree: A tree explorer plugin for vim.
         Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+        " Run interactive commands inside a Vim buffer 
+        Plug 'oplatek/Conque-Shell'
+
     " Initialize plugin system
     call plug#end()
 
@@ -459,3 +462,4 @@ let g:lightline = {
 
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
+
