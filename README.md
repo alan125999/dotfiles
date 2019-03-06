@@ -15,6 +15,10 @@ Just source them or create some symbolic links !
 ``` vim
 source $HOME/dotfiles/vimrc
 ```
+- tmux
+``` tmux
+source-file ~/dotfiles/.tmux.conf
+```
 - Symbolic link
 ``` bash
 ln -s ~/dotfiles/vimrc ~/.vimrc
