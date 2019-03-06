@@ -8,7 +8,7 @@ git clone https://github.com/alan125999/dotfiles.git
 ```
 
 ### Usage
-Just source them or create symbolic link !
+Just source them or create some symbolic links !
 
 ### Example
 - vim
