@@ -409,7 +409,7 @@ try
         " nerdtree: A tree explorer plugin for vim.
         Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-        " Run interactive commands inside a Vim buffer 
+        " Run interactive commands inside a Vim buffer
         Plug 'oplatek/Conque-Shell'
 
     " Initialize plugin system
@@ -424,7 +424,7 @@ catch
       \     read yn;
       \     case $yn in
       \         [Yy]* )
-      \             curl -fLo ~/.vim/autoload/plug.vim 
+      \             curl -fLo ~/.vim/autoload/plug.vim
       \                  --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;
       \             exit;;
       \         * )
@@ -443,22 +443,22 @@ endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline
 "set noshowmode
-let g:lightline = {
-    \   'colorscheme': 'wombat',
-    \   'active': {
-    \     'left': [ [ 'mode', 'paste' ],
-    \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-    \     'right': [ [ 'lineinfo' ],
-    \                [ 'percent' ],
-    \                [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-    \   },
-    \   'component': {
-    \     'charvaluehex': '0x%B',
-    \   },
-    \   'component_function': {
-    \     'gitbranch': 'fugitive#head'
-    \   },
-    \ }
+"let g:lightline = {
+"    \   'colorscheme': 'wombat',
+"    \   'active': {
+"    \     'left': [ [ 'mode', 'paste' ],
+"    \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+"    \     'right': [ [ 'lineinfo' ],
+"    \                [ 'percent' ],
+"    \                [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+"    \   },
+"    \   'component': {
+"    \     'charvaluehex': '0x%B',
+"    \   },
+"    \   'component_function': {
+"    \     'gitbranch': 'fugitive#head'
+"    \   },
+"    \ }
 
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
