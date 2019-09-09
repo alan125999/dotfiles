@@ -412,6 +412,8 @@ try
         " Run interactive commands inside a Vim buffer
         Plug 'oplatek/Conque-Shell'
 
+        "Plug 'Valloric/YouCompleteMe'
+        Plug 'majutsushi/tagbar'
     " Initialize plugin system
     call plug#end()
 
