@@ -196,13 +196,30 @@ set listchars=tab:>-,trail:.
 " Encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto Detect file encoding
-" 由前向後自動偵測編碼，當解讀時沒有錯誤即選用該編碼
-" 因此越是特殊，容易區別的編碼要放越前面
-set fileencodings=ucs-bom,utf-8,Big5,cp936
+" fileencoding  為開啟檔案時所用來解讀的編碼(同時也作為儲存時使用的編碼)
+" fileencodings 則為在 fileencoding 未設定時，vim 自動猜測編碼的依據
+" vim 會由前向後猜測編碼，當解讀時沒有遇到錯誤即選用該編碼作為 fileencoding
+" 因此編碼越是特殊或越是嚴格者要放越前面
+" 比方說 latin1 是單純把每個 byte 解讀成字母，所以理論上所有字元都不會出錯，應當放在最後
+" 而 utf-8 會在文字中塞入特殊字元做標記，因此應當放最前面
+" 一般來說並不會直接設定 fileencoding ，如果猜測失敗，可用 :e ++enc=<encoding> 來以特定編碼重新開啟檔案
+" More info: http://edyfox.codecarver.org/html/vim_fileencodings_detection.html
+set fileencodings=ucs-bom,utf-8,big5,cp936,gb18030,euc-jp,euc-kr,latin1
 
-" Set Default file encoding for new file
-" 開新檔案時所使用的預設編碼
+" Set Internal Encoding (for buffer and string processing)
+" 設定 vim 內部編碼，也就是 vim 在處理文字時所使用的編碼(包含在 buffer 中儲存的資料)
+" 若有未知的字元，將被丟棄，所以要盡可能設定能兼容越多字元的編碼
+" 一般來說 unicode 最通用
 set encoding=utf-8
+
+" Set terminal encoding (for display)
+" 設定終端編碼，vim 在顯示字元時會將內部編碼轉碼成終端編碼，
+" 如果轉換失敗，也只是顯示問號或顯示不出來，只要不意外將其刪除
+" 存擋時並不會造成缺漏
+" termencoding 未設定的話，會自動使用 locale 的設定
+" 所以一般來說 termencoding 不會設定，且 encoding 會設為相容性最高的 encoding
+" 當需要特別設定時，可以 set tenc=<encoding> 或是在下面 uncomment
+"set termencoding=big5
 
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac

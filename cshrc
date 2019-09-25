@@ -22,11 +22,21 @@ alias ll	ls -lAF
 setenv	EDITOR	vim
 setenv	PAGER	less
 
+# For Tmux 256 Color
+set TERM = screen-256color
+
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
-	set prompt = "%N@%m:%~ %# "
+#	set prompt = "%N@%m:%~ %# "
 	set promptchars = "%#"
 
+    # Set Prompt - 256 colors
+    if ($euser == $user) then 
+        set prompt = "\n%{^[[1;38;5;82m%}%m: %{^[[1;38;5;87m%}%~\n%{^[[1;38;5;218m%}%T %{^[[1;38;5;226m%}%n %{^[[31;1m%}%#%{^[[0m%} "
+    else 
+        set prompt = "\n%{^[[1;38;5;82m%}%m: %{^[[1;38;5;87m%}%~\n%{^[[1;38;5;218m%}%T %{^[[1;38;5;226m%}%n -> %{^[[1;38;5;214m%}%N %{^[[31;1m%}%#%{^[[0m%} "
+    endif
+    
 	set filec
 	set history = 1000
 	set savehist = (1000 merge)
@@ -41,16 +51,6 @@ if ($?prompt) then
 		bindkey -k down history-search-forward
 	endif
 
-endif
-
-# For Tmux 256 Color
-set TERM = screen-256color
-
-# Set Prompt - 256 colors
-if ($euser == $user) then 
-    set prompt = "\n%{^[[1;38;5;82m%}%m: %{^[[1;38;5;87m%}%~\n%{^[[1;38;5;218m%}%T %{^[[1;38;5;226m%}%n %{^[[31;1m%}%#%{^[[0m%} "
-else 
-    set prompt = "\n%{^[[1;38;5;82m%}%m: %{^[[1;38;5;87m%}%~\n%{^[[1;38;5;218m%}%T %{^[[1;38;5;226m%}%n -> %{^[[1;38;5;214m%}%N %{^[[31;1m%}%#%{^[[0m%} "
 endif
 
 # Set ls Color
