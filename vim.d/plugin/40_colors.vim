@@ -69,7 +69,7 @@ syntax enable
 "   default:   預設其實也不錯啦
 " ----------------------------------------------------------
 
-let s:scheme = 'codedark'
+"let s:scheme = 'codedark'
 let s:schemes = [ 'pablo', 'elflord', 'ron', 'industry', 'murphy', 'torte' ]
 
 if exists('s:scheme') && s:scheme != ''

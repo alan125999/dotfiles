@@ -1,6 +1,7 @@
 " ======================================================== "
 "                     Vim-Plug Plugins                     "
 " ======================================================== "
+if 0
 
 let s:auto_install = 1
 
@@ -200,3 +201,5 @@ let g:vim_jsx_pretty_colorful_config = 1
 
 " Highlight the close tag separately from the open tag
 let g:vim_jsx_pretty_highlight_close_tag = 1
+
+endif
