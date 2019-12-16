@@ -1,0 +1,146 @@
+" General
+set nocompatible
+set history=10000
+set lazyredraw
+set hidden
+
+" Encoding
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,big5,cp936,gb18030,euc-jp,euc-kr,latin1
+set fileformats=unix,dos,mac
+
+" Layout
+set number
+set relativenumber
+set foldenable
+set foldmethod=syntax
+set foldcolumn=1
+set foldlevelstart=10
+set foldnestmax=10
+set nowrap
+set linebreak
+set cursorline
+set cursorcolumn
+set virtualedit=all
+set scrolloff=7
+set sidescroll=1
+set cmdheight=1
+set showcmd
+set showmode
+set ruler
+set wildmenu
+set laststatus=2
+
+function! SyntaxItem()
+    return synIDattr(synID(line("."),col("."),1),"name")
+endfunction
+
+if has('statusline')
+    set statusline=%2n\                              " buffer number
+    set statusline+=%<                               " Truncate here if winwidth is too small (filename too long)
+    set statusline+=%f\                              " file name
+    set statusline+=%m                               " modified flag
+    set statusline+=%r                               " read only flag
+    set statusline+=[%{strlen(&fenc)?&fenc:'none'},\ " file encoding
+    set statusline+=%{&ff}]                          " file format
+    set statusline+=%y                               " filetype
+    set statusline+=%=                               " left/right separator
+    set statusline+=\ %{SyntaxItem()}\               " syntax highlight group under cursor
+    set statusline+=0x%B\                            " character code under cursor
+    set statusline+=%l/%L,\ %c%V\ %P                 " cursor position/offset
+endif
+
+set showtabline=2
+
+" Colors
+set t_Co=256
+set t_ut=
+syntax enable
+
+let s:scheme = ''
+let s:schemes = [ 'pablo', 'elflord', 'ron', 'industry', 'murphy', 'torte' ]
+
+if exists('s:scheme') && s:scheme != ''
+    execute 'colorscheme' s:scheme
+else
+    for s in s:schemes
+        try
+            execute "colorscheme" s
+            break
+        catch /^Vim\%((\a\+)\)\=:E185/
+            " Catch Error and do nothing.
+            " Just continue to try next scheme
+        endtry
+    endfor
+endif
+
+highlight TabLine      cterm=NONE ctermfg=white ctermbg=238
+highlight TabLineSel   cterm=bold ctermfg=white ctermbg=33
+highlight TabLineFill             ctermfg=236   ctermbg=236
+highlight CursorLine   cterm=bold ctermbg=238
+highlight CursorLineNr cterm=bold ctermbg=238
+highlight CursorColumn cterm=bold ctermbg=238
+highlight FoldColumn   ctermfg=33 ctermbg=236
+highlight WarningMsg   term=standout ctermfg=202
+highlight StatusLine   cterm=bold ctermfg=255 ctermbg=33
+
+" Editing
+set showmatch
+set matchtime=1
+
+function! RestoreCursor()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup restoreCursor
+  autocmd!
+  autocmd BufWinEnter * call RestoreCursor()
+augroup END
+
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+set smarttab
+set list
+set listchars=tab:>-,trail:.
+set backspace=2
+
+function! StripFile()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfunction
+
+augroup stripFile
+    autocmd!
+    autocmd BufWritePre *.js,*.py,*.sh,*.c :call StripFile()
+augroup END
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set magic
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Filetype
+filetype plugin indent on
+autocmd FileType html,javascript,javascriptreact,python
+    \ setlocal shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal formatprg=prettier
+autocmd FileType javascript.jsx setlocal formatprg=prettier
+autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+autocmd FileType html setlocal formatprg=js-beautify\ --type\ html
+autocmd FileType scss setlocal formatprg=prettier\ --parser\ css
+autocmd FileType css setlocal formatprg=prettier\ --parser\ css
+
+set omnifunc=syntaxcomplete#Complete
+

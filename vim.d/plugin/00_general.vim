@@ -18,22 +18,7 @@ set history=10000
 
 
 " ---------------------------------------------------------
-" Show single or double width for ambiguous characters.
-" 將不明字寬的字元顯示為單字寬或雙字寬。
-" ---------------------------------------------------------
-" Notes:
-" 不明字寬是指如歐元、註冊商標、智財權標誌等字元
-" 由於在東西方語言中皆會使用，因此字寬不明。
-"
-" 顯示為單字寬應能滿足大部分情況，但有時候對於整段都是 CJK
-" (中日韓) 等雙字寬文字時，你可能會希望將這些符號也顯示成
-" 雙字寬。
-" ---------------------------------------------------------
-" set ambiwidth=double
-
-
-" ---------------------------------------------------------
-" Tell vim to remember certain things when we exit 
+" Tell vim to remember certain things when we exit
 " ---------------------------------------------------------
 " Notes:
 "   Required by RestoreCursor.
@@ -46,7 +31,7 @@ set history=10000
 
 
 " ---------------------------------------------------------
-" Auto reload the file when it might be changed after 
+" Auto reload the file when it might be changed after
 " running shell commands.
 " ---------------------------------------------------------
 " set autoread
@@ -61,7 +46,7 @@ set history=10000
 
 
 " ---------------------------------------------------------
-" For better performance, do not redraw during executing 
+" For better performance, do not redraw during executing
 " marcos.
 " ---------------------------------------------------------
 set lazyredraw
@@ -79,11 +64,4 @@ set lazyredraw
 " ---------------------------------------------------------
 set hidden
 
-" ---------------------------------------------------------
-" Specify the behavior when switching between buffers
-" ---------------------------------------------------------
-try
-    set switchbuf=useopen,usetab,newtab
-catch
-    " Do nothing
-endtry
+

@@ -69,7 +69,7 @@ syntax enable
 "   default:   預設其實也不錯啦
 " ----------------------------------------------------------
 
-"let s:scheme = 'codedark'
+let s:scheme = ''
 let s:schemes = [ 'pablo', 'elflord', 'ron', 'industry', 'murphy', 'torte' ]
 
 if exists('s:scheme') && s:scheme != ''
@@ -87,7 +87,6 @@ else
 endif
 
 
-
 " ======================================================== "
 "                    Highlight Override                    "
 " -------------------------------------------------------- "
@@ -96,39 +95,10 @@ endif
 "   是 load 一個寫了一堆 highlight 參數的 vim script。     "
 "                                                          "
 "   因此放在其後才能 override。                            "
+"                                                          "
+"   由於安裝了 vim-code-dark 為了確保讀取順序為:           "
+"       load plugin > load scheme > load override rules    "
+"   決定將 highlight override 寫成 autoload function       "
+"   需要時隨時調用即可。
 " ======================================================== "
-
-
-" ----------------------------------------------------------
-" Tab Line
-" ----------------------------------------------------------
-highlight TabLine      cterm=NONE ctermfg=white ctermbg=238
-highlight TabLineSel   cterm=bold ctermfg=white ctermbg=33
-highlight TabLineFill             ctermfg=236   ctermbg=236
-
-
-" ----------------------------------------------------------
-" Editor
-" ----------------------------------------------------------
-
-" Crosshair
-highlight CursorLine   cterm=bold ctermbg=238
-highlight CursorLineNr cterm=bold ctermbg=238
-highlight CursorColumn cterm=bold ctermbg=238
-
-" Folding
-highlight FoldColumn   ctermfg=33 ctermbg=236
-
-
-" ----------------------------------------------------------
-" Command Line
-" ----------------------------------------------------------
-highlight WarningMsg   term=standout ctermfg=202
-
-
-" ----------------------------------------------------------
-" Status Line
-" ----------------------------------------------------------
-highlight StatusLine   cterm=bold ctermfg=255 ctermbg=33
-
-
+call Colors#HiAll()
