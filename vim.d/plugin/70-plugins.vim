@@ -66,8 +66,8 @@ let g:ycm_semantic_triggers =  {
     \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
     \ 'cs,lua,javascript': ['re!\w{2}'],
     \ }
-highlight PMenu ctermfg=255 ctermbg=39
-highlight PMenuSel ctermfg=15 ctermbg=45
+highlight PMenu    ctermfg=255 ctermbg=39
+highlight PMenuSel ctermfg=15  ctermbg=45
 
 
 " ----------------------------------------------------------
