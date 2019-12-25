@@ -39,6 +39,10 @@ function Colors#HiEditor()
     " Folding
     highlight FoldColumn   ctermfg=33 ctermbg=236
 
+    " Completion Menu
+    highlight PMenu    ctermfg=255 ctermbg=39
+    highlight PMenuSel ctermfg=15  ctermbg=45
+
 endfunction
 
 

@@ -27,6 +27,9 @@
 let $MY_VIM_D = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/vim.d'
 let &runtimepath .= ',' . $MY_VIM_D
 
+" Load flags
+execute 'source' $MY_VIM_D . '/flag.vim'
+
 " Load plugins managed by vim-plug
 execute 'source' $MY_VIM_D . '/load-plugins.vim'
 

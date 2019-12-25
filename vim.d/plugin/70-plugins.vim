@@ -3,7 +3,7 @@
 " ======================================================== "
 
 
-if filereadable(expand('~/.vim/autoload/plug.vim'))
+if filereadable(expand('~/.vim/autoload/plug.vim')) && g:status#plug_loaded && !exists('g:status#plug_auto_installed')
 
     " ----------------------------------------------------------
     " Lightline
@@ -68,8 +68,6 @@ if filereadable(expand('~/.vim/autoload/plug.vim'))
                 \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
                 \ 'cs,lua,javascript': ['re!\w{2}'],
                 \ }
-    highlight PMenu    ctermfg=255 ctermbg=39
-    highlight PMenuSel ctermfg=15  ctermbg=45
 
 
     " ----------------------------------------------------------
