@@ -1,0 +1,5 @@
+# Flag file for auto-update
+.update
+
+# Folder Metadata in macOS
+.DS_Store
