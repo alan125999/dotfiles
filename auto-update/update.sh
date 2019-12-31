@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Use 'command -v <cmd>' to check if it exist.
-function check_command_exist() {
+check_command_exist() {
     command -v $1 >/dev/null 2>&1
     return $?
 }
@@ -10,18 +10,18 @@ function check_command_exist() {
 if ! check_command_exist 'realpath' ; then
 
     # Simple realpath function, which cannot dereference symbolic link.
-    function realpath() {
+    realpath() {
         [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
     }
 fi
 
-function get_script_location() {
+get_script_location() {
     DIR=${0%/*}
     ABS_DIR=$(realpath "$DIR")
     echo $ABS_DIR
 }
 
-function get_epoch_day() {
+get_epoch_day() {
     echo $(expr $(date +%s) / 60 / 60 / 24)
 }
 
@@ -33,11 +33,11 @@ DOTFILES_DIR=$(dirname ${SCRIPTS_DIR})
 FLAG_FILE="${DOTFILES_DIR}/.update"
 TARGET_DAYS=13
 
-function update_flag() {
+update_flag() {
     echo "LAST_EPOCH=$(get_epoch_day)" > $FLAG_FILE
 }
 
-function update_repo() {
+update_repo() {
     echo "Check update of dotfiles from github? [y/N] "
     read ans
     if [ s"$ans" == s"y" ] || [ s"$ans" == s"Y" ]; then
@@ -51,7 +51,7 @@ function update_repo() {
 if ! [ -f $FLAG_FILE ]; then
     update_flag
 else
-    source $FLAG_FILE
+    . $FLAG_FILE
     if [ -z "$LAST_EPOCH" ] || [ $(expr $(get_epoch_day) - $LAST_EPOCH) -gt $TARGET_DAYS ]; then
         update_repo
     fi
