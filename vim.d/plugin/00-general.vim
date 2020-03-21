@@ -65,3 +65,11 @@ set lazyredraw
 set hidden
 
 
+" ---------------------------------------------------------
+" Enable modeline
+" ---------------------------------------------------------
+" Exexute modeline (file specific settings ) in files.
+" 'set nocompatible' will set modeline enable
+" Here we only need to set how many line to read.
+" ---------------------------------------------------------
+set modelines=5
