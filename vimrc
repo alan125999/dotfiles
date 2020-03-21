@@ -29,7 +29,7 @@ let &runtimepath .= ',' . $MY_VIM_D
 
 " Load flags
 if !filereadable($MY_VIM_D . '/flag.vim')
-    echom 'flag.vim not exsit. Created'
+    echom 'flag.vim does not exist. Created'
     silent ! cp $MY_VIM_D/flag.dist.vim $MY_VIM_D/flag.vim;
 endif
 execute 'source' $MY_VIM_D . '/flag.vim'
