@@ -1,21 +1,23 @@
-" General
+" General {{{
 set nocompatible
 set history=10000
 set lazyredraw
 set hidden
+" }}}
 
-" Encoding
+" Encoding {{{
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,cp936,gb18030,euc-jp,euc-kr,latin1
 set fileformats=unix,dos,mac
+" }}}
 
-" Layout
+" Layout {{{
 set number
 set relativenumber
 set foldenable
 set foldmethod=syntax
 set foldcolumn=1
-set foldlevelstart=10
+set foldlevelstart=5
 set foldnestmax=10
 set nowrap
 set linebreak
@@ -51,8 +53,9 @@ if has('statusline')
 endif
 
 set showtabline=2
+" }}}
 
-" Colors
+" Colors {{{
 set t_Co=256
 set t_ut=
 syntax enable
@@ -83,8 +86,9 @@ highlight CursorColumn cterm=bold ctermbg=238
 highlight FoldColumn   ctermfg=33 ctermbg=236
 highlight WarningMsg   term=standout ctermfg=202
 highlight StatusLine   cterm=bold ctermfg=255 ctermbg=33
+" }}}
 
-" Editing
+" Editing {{{
 set showmatch
 set matchtime=1
 
@@ -122,16 +126,20 @@ augroup stripFile
     autocmd!
     autocmd BufWritePre *.js,*.py,*.sh,*.c :call StripFile()
 augroup END
+" }}}
 
-" Searching
+" Searching {{{
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set magic
 nnoremap <leader><space> :nohlsearch<CR>
+" }}}
 
-" Filetype
+" Filetype {{{
+set modeline
+set modelines=2
 filetype plugin indent on
 autocmd FileType html,javascript,javascriptreact,python
     \ setlocal shiftwidth=2 softtabstop=2
@@ -143,4 +151,6 @@ autocmd FileType scss setlocal formatprg=prettier\ --parser\ css
 autocmd FileType css setlocal formatprg=prettier\ --parser\ css
 
 set omnifunc=syntaxcomplete#Complete
+" }}}
 
+" vim: set foldmethod=marker foldlevel=0:
